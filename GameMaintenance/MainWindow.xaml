@@ -1,0 +1,114 @@
+﻿<Window x:Class="GameMaintenance.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameMaintenance"
+        mc:Ignorable="d"
+        
+       
+
+    Title="Játék karbantartó" WindowState="Maximized" >
+    
+    <Grid Name="JatekokGrid" Background="#FF3E3E59">
+        <DataGrid Name="JatekokAdatai" SelectionChanged="Jatekok_adatai_Changed" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" HorizontalAlignment="Stretch"  Margin="10,10,0,0" VerticalAlignment="Top" Height="500" FontWeight="Bold" Background="White" RowBackground="LightGray" AlternatingRowBackground="White"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Width="30" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Név" Width="220" Binding="{Binding Nev}"/>
+                <DataGridTextColumn Header="Kategória" Width="150" Binding="{Binding Kategoria}"/>
+                <DataGridTextColumn Header="Ár" Width="90" Binding="{Binding Ar}"/>
+                <DataGridTextColumn Header="Leírás" Width="634" Binding="{Binding Leiras}"/>
+                <DataGridTextColumn Header="Kép" Width="150" Binding="{Binding Kep}"/>
+                <DataGridTextColumn Header="Megjelenés" Width="227" Binding="{Binding Megjelenes}"/>
+                
+                <DataGridTemplateColumn Width="SizeToCells" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding ByteArrayToImageSourceConverter}" Stretch="None"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <Image Source="{Binding MyImageByteArray}"  HorizontalAlignment="Left" Height="100" Margin="256,683,0,0" VerticalAlignment="Top" Width="100"/>
+
+
+        <TextBox Name="txb_Nev" HorizontalAlignment="Left" Margin="55,619,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="175" Height="26" FontWeight="Bold"/>
+        <Label Content="Név" HorizontalAlignment="Left" Margin="10,613,0,0" VerticalAlignment="Top" Height="26" Width="40" Foreground="#FFF6F6F6" FontWeight="Bold" FontSize="14"/>
+
+        <TextBox Name="txb_Kategoria" HorizontalAlignment="Left" Margin="334,619,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="174" Height="26" FontWeight="Bold"/>
+        <Label Content="Kategória" HorizontalAlignment="Left" Margin="256,613,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Foreground="#FFF4F1F1"/>
+
+        <TextBox Name="txb_Ar" HorizontalAlignment="Left" Margin="584,619,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="140" Height="26" FontWeight="Bold"/>
+        <Label Content="Ár" HorizontalAlignment="Left" Margin="543,613,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="14"/>
+
+        <TextBox Name="txb_Leiras" HorizontalAlignment="Left" Margin="824,619,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="234" Height="64" FontWeight="Bold" />
+        <Label Content="Leírás" HorizontalAlignment="Left" Margin="756,612,0,0" VerticalAlignment="Top" Foreground="#FFFAFAFA" FontWeight="Bold" FontSize="14"/>
+
+        <TextBox Name="txb_Megjelenes" HorizontalAlignment="Left" Margin="1324,619,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="196" Height="26" FontWeight="Bold"/>
+        <Label Content="Megjelenés" HorizontalAlignment="Left" Margin="1234,613,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="14"/>
+
+        <!--<Button x:Name="BrowseButton" Content="Kép feltöltése" Width="117" Height="43" Click="BrowseButton_OnClick" Margin="1093,619,303,85"/>-->
+
+
+        <Button Name="btn_Modositas" Content="Módosítás" HorizontalAlignment="Left" Margin="451,706,0,0" VerticalAlignment="Top" Width="117" Height="43" Click="btn_Modositas_Click" FontWeight="Bold" FontSize="14" Background="#FF0B5CDF" Foreground="White">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <!--<Button Name="btn_Hozzaadas" Content="Hozzáadás" HorizontalAlignment="Left" Margin="682,704,0,0"  VerticalAlignment="Top" Width="117" Height="43" Click="btn_Hozzaadas_Click" FontSize="14" FontWeight="Bold" Background="#FF0B5CDF" Foreground="White" FontFamily="Segoe UI">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>-->
+
+        <Button Name="btn_Torles" Content="Törlés" HorizontalAlignment="Left" Margin="918,706,0,0" VerticalAlignment="Top" Width="117" Height="43" Click="btn_Torles_Click" FontSize="14" FontWeight="Bold" Foreground="White" Background="#FFD92416">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+
+        <!--<Button Name="btnUploadImage" Content="Upload Image" Click="btnUploadImage_Click"  Width="117" Height="43" Margin="793,700,830,167"  VerticalAlignment="Top">
+        </Button>-->
+
+        <Image Name="imgPreview" Stretch="Uniform"  Width="117" Height="43" Margin="1218,706,405,161"/>
+
+        <!--<Button Name="btnSave" Content="Save" Click="btnSave_Click"  Width="117" Height="43" Margin="568,705,1055,162"/>-->
+
+        <!--<Button Name="btnSave" Content="Save" Click="btnSave_Click"  Width="117" Height="42" Margin="565,704,1058,0" VerticalAlignment="Top"  FontSize="14" FontWeight="Bold" Foreground="White" Background="#FFB7BDA4">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>-->
+
+        <Button Name="btnSave" Content="Hozzáadás" Click="btnSave_Click" HorizontalAlignment="Left" Margin="688,706,0,0" VerticalAlignment="Top"  Width="117" Height="43"  FontSize="14" FontWeight="Bold" Foreground="White" Background="#FF0B5CDF">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button Name="btnUploadImage" Content="Kép feltöltés" Click="btnUploadImage_Click"  Width="116" HorizontalAlignment="Left" Margin="1090,615,0,0" VerticalAlignment="Top"   Height="42" FontSize="14"  FontWeight="Bold">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+
+    </Grid>
+</Window>
